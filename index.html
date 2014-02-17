@@ -12,7 +12,7 @@
        
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-         <link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <style>
             body {
                 padding-top: 50px;
@@ -44,19 +44,34 @@
     <script type="text/x-handlebars">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
+            <h2>Columns</h2>
+            <ul class="columns">
+            {{#each}}
+              <li {{bind-attr data-id="id"}}>
+                {{name}}
+                <a {{action "delete" this}}>x</a>
+              </li>
+            {{/each}}
+            </ul>
+            {{input type="text" placeholder="create a column" valueBinding="columnName"}}
           </div>
-          <div class="col-md-8">
-          {{outlet}}
+          <div class="col-md-10">
+            {{outlet}}
           </div>
         </end>
       </div>
     </script>
     
     <script type="text/x-handlebars" data-template-name="index">
+      <div class="row">
+      {{#each}}
+        <div class="col-md-2">
+          <h3>{{name}}</h3>
+        </div> 
+      {{/each}}
+      </div>
     </script>
-    
-
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
