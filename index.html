@@ -54,7 +54,7 @@
               </li>
             {{/each}}
             </ul>
-            {{input type="text" placeholder="create a column" valueBinding="columnName"}}
+            {{input type="text" placeholder="create a column" class="new-column" valueBinding="columnName"}}
           </div>
           <div class="col-md-10">
             {{outlet}}
@@ -66,11 +66,25 @@
     <script type="text/x-handlebars" data-template-name="index">
       <div class="row">
       {{#each}}
-        <div class="col-md-2">
-          <h3>{{name}}</h3>
-        </div> 
+        {{render 'column' this}}
       {{/each}}
       </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="column">
+      <div class="col-md-3">
+      <h3>{{name}}</h3>
+        {{render 'tasks' this.tasks}}
+      </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="tasks">
+      <ul class="tasks"> 
+      {{#each}}
+        <li {{bind-attr data-id="id" data-column-id="column.id"}}>{{name}}</li>
+      {{/each}}
+      </ul>
+      {{input type="text" placeholder="create a task" valueBinding="taskName"}}
     </script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
